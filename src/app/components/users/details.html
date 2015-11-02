@@ -1,0 +1,34 @@
+<a ui-sref="index.users.list" title="Utilisateurs">
+    <span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des utilisateurs
+</a><br />
+
+<div class="col-sm-12">
+    <h2>{{ usersDetCtl.user.first_name }} {{ usersDetCtl.user.last_name }}</h2>
+
+    <table class="table">
+        <tr>
+            <td>Nom</td>
+            <td>{{ usersDetCtl.user.last_name }}</td>
+        </tr>
+        <tr>
+            <td>Prénom</td>
+            <td>{{ usersDetCtl.user.first_name }}</td>
+        </tr>
+        <tr>
+            <td>Identifiant</td>
+            <td>{{ usersDetCtl.user.username }}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{ usersDetCtl.user.email }}</td>
+        </tr>
+        <tr>
+            <td>État du compte</td>
+            <td><span class="label" ng-class="usersDetCtl.user.is_active && 'label-success' || 'label-danger'">{{ usersDetCtl.user.is_active && 'activé' || 'désactivé' }}</span></td>
+        </tr>
+    </table>
+
+    <a class="btn btn-warning" href="" ng-click="usersDetCtl.disable(usersDetCtl.user)" title="Désactiver le compte" ng-if="usersDetCtl.user.is_active">Désactiver ce compte</a>
+    <a class="btn btn-success" href="" ng-click="usersDetCtl.enable(usersDetCtl.user)" title="Réactiver le compte" ng-if="!usersDetCtl.user.is_active">Réactiver ce compte</a>
+    <a class="btn btn-danger" href="" ng-click="usersDetCtl.remove(usersDetCtl.user)" title="Supprimer le compte">Supprimer ce compte</a>
+</div>

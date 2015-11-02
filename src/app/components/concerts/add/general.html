@@ -1,0 +1,66 @@
+<form class="form-horizontal" ng-submit="cAddGenCtl.add(cAddGenCtl.concert)">
+    <div class="form-group">
+        <label for="cdate" class="col-sm-2 control-label">Date</label>
+        <div class="col-sm-10">
+            <div class="datetimepicker-wrapper">
+                <div class="input-group">
+                    <input 
+                        type="text" class="form-control" id="cdate" 
+                        uib-datepicker-popup="EEEE dd MMMM" date-format="EEEE dd MMMM" 
+                        datepicker-options="{'starting-day': 1}"
+                        ng-model="cAddGenCtl.concert_date" is-open="cAddGenCtl.opened" ng-required="true" 
+                        close-text="Fermer" current-text="Auj." clear-text="Annuler" show-button-bar="true" ng-click="cAddGenCtl.open($event)" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="cAddGenCtl.open($event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ctime" class="col-sm-2 control-label">Heure</label>
+        <div class="col-sm-10">
+            <uib-timepicker ng-model="cAddGenCtl.concert_date" ng-change="cAddGenCtl.time_change" minute-step="5" show-meridian="false"></uib-timepicker>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="cplace" class="col-sm-2 control-label">Lieu</label>
+        <div class="col-sm-10">
+            <input type="text" id="cplace" ng-model="cAddGenCtl.concert.place" class="form-control" placeholder="Église Saint-Eustache" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="caddress" class="col-sm-2 control-label">Adresse complète</label>
+        <div class="col-sm-10">
+            <textarea id="caddress" ng-model="cAddGenCtl.concert.address" class="form-control" placeholder="1 rue Rambuteau 75001 PARIS - Métro Les Halles"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ccity" class="col-sm-2 control-label">Ville</label>
+        <div class="col-sm-10">
+            <input type="text" id="ccity" ng-model="cAddGenCtl.concert.city" class="form-control" placeholder="Paris" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="corchestra" class="col-sm-2 control-label">Orchestre</label>
+        <div class="col-sm-10">
+            <input type="text" id="corchestra" ng-model="cAddGenCtl.concert.orchestra" class="form-control" placeholder="Ostinato" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="cdirector_lastname" class="col-sm-2 control-label">Chef de chœur</label>
+        <div class="col-sm-5">
+            <input type="text" id="cdirector_lastname" ng-model="cAddGenCtl.concert.director_lastname" class="form-control" placeholder="Holiner" />
+        </div>
+        <div class="col-sm-5">
+            <input type="text" id="cdirector_firstname" ng-model="cAddGenCtl.concert.director_firstname" class="form-control" placeholder="Patrice" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <input type="submit" class="btn btn-success" value="Valider">
+        </div>
+    </div>
+</form>

@@ -1,0 +1,23 @@
+<div class="center">
+    <h2>Ajouter un concert</h2>
+
+    <div class="progress">
+        <div class="progress-bar" ng-class="cAddCtl.steps('general')" style="width: 20%">
+            1. Informations générales
+        </div>
+        <div class="progress-bar" ng-class="cAddCtl.steps('pieces')" style="width: 20%">
+            2. Œuvres
+        </div>
+        <div class="progress-bar" ng-class="cAddCtl.steps('soloists')" style="width: 20%">
+            3. Solistes
+        </div>
+        <div class="progress-bar" ng-class="cAddCtl.steps('musicians')" style="width: 20%">
+            4. Musiciens
+        </div>
+        <div class="progress-bar" ng-class="cAddCtl.steps('validation')" style="width: 20%">
+            5. Validation
+        </div> 
+    </div>
+</div>
+
+<div ui-view=""></div>

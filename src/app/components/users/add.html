@@ -1,0 +1,53 @@
+<a ui-sref="index.users.list" title="Utilisateurs">
+    <span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des utilisateurs
+</a><br />
+
+<div class="col-sm-12">
+    <h2>Créer un compte utilisateur</h2>
+
+    <form class="form-horizontal" ng-submit="usersAddCtl.add(usersAddCtl.user)">
+        <div class="form-group">
+            <label for="ulastname" class="control-label col-sm-2">Nom</label>
+            <div class="col-sm-10">
+                <input type="text" id="ulastname" class="form-control" ng-model="usersAddCtl.user.last_name" required="required" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ufirstname" class="control-label col-sm-2">Prénom</label>
+            <div class="col-sm-10">
+                <input type="text" id="ufirstname" class="form-control" ng-model="usersAddCtl.user.first_name" required="required" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="uemail" class="control-label col-sm-2">Email</label>
+            <div class="col-sm-10">
+                <input type="email" id="uemail" class="form-control" ng-model="usersAddCtl.user.email" required="required" />
+            </div>
+        </div>
+        <div class="form-group" ng-class="!usersAddCtl.checkUsername() && 'has-error' || ''">
+            <label for="uusername" class="control-label col-sm-2">Identifiant</label>
+            <div class="col-sm-10">
+                <input type="text" id="uusername" class="form-control" ng-model="usersAddCtl.user.username" required="required" />
+                <span class="help-block" ng-if="!usersAddCtl.checkUsername()">L'identifiant doit comporter moins de 30 caractères.</span>
+            </div>
+        </div>
+        <div class="form-group" ng-class="!usersAddCtl.identicalPwd && 'has-error' || ''">
+            <label for="upassword" class="control-label col-sm-2">Mot de passe</label>
+            <div class="col-sm-10">
+                <input type="password" id="upassword" class="form-control" ng-model="usersAddCtl.user.password" required="required" />
+            </div>
+        </div>
+        <div class="form-group" ng-class="!usersAddCtl.identicalPwd && 'has-error' || ''">
+            <label for="upasswordconfirm" class="control-label col-sm-2">Confirmation</label>
+            <div class="col-sm-10">
+                <input type="password" id="ulastnameconfirm" class="form-control" ng-model="usersAddCtl.password_confirm" required="required" ng-blur="usersAddCtl.checkPwd()" />
+                <span class="help-block" ng-if="!usersAddCtl.identicalPwd">Les mots de passe sont différents.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <input type="submit" class="btn btn-success" value="Valider" ng-class="!usersAddCtl.valid && 'disabled' || ''" />
+            </div>
+        </div>
+    </form>
+</div>

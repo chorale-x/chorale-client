@@ -1,0 +1,31 @@
+<div class="center">
+    <h2>Mon compte</h2>
+</div>
+
+<table class="table">
+    <tr>
+        <td>Nom</td>
+        <td>{{ meHomeCtl.me.last_name }}</td>
+    </tr>
+    <tr>
+        <td>Prénom</td>
+        <td>{{ meHomeCtl.me.first_name }}</td>
+    </tr>
+    <tr>
+        <td>Identifiant</td>
+        <td>{{ meHomeCtl.me.username }}</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{ meHomeCtl.me.email }}</td>
+    </tr>
+    <tr>
+        <td>État du compte</td>
+        <td><span class="label" ng-class="meHomeCtl.me.is_active && 'label-success' || 'label-danger'">{{ meHomeCtl.me.is_active && 'activé' || 'désactivé' }}</span></td>
+    </tr>
+</table>
+
+<ul>
+    <li><a ui-sref="index.me.edit">Modifier mes informations (nom, prénom, email, identifiant)</a></li>
+    <li><a ui-sref="index.me.change_pwd">Modifier mon mot de passe</a></li>
+</ul>

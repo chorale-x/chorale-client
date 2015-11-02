@@ -1,0 +1,49 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+}
+
+.thumbnail img.pull-right {
+  width: 50px;
+}
+
+/* *** Sticky footer *** */
+/*#big-container {
+    min-height: 100%;
+}*/
+
+
+/* ANIMATIONS ================================================= *
+
+/* The starting CSS styles for the enter animation */
+.ng-enter {
+    transition:0.5s linear all;
+    opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
+.ng-leave {
+    transition:0.5s linear all;
+    opacity:1;
+}
+.ng-leave.ng-leave-active {
+    opacity:0;
+}
+
+.slide.ng-enter {
+    transition:0.5s linear all;
+    transform:translateY(-100px);
+}
+.slide.ng-enter.ng-enter-active {
+    transform:translateY(0);
+}

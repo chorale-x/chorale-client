@@ -1,0 +1,22 @@
+<div class="col-sm-12">
+    <h2>Liste des utilisateurs</h2>
+
+    <div class="text-right">
+        <a class="btn btn-success" ui-sref="index.users.add">Ajouter un utilisateur</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom Prénom</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="u in usersListCtl.users_list | orderBy:['last_name', 'first_name']">
+                <td><a ui-sref="index.users.details({id: u.id})" tooltip="En savoir plus sur {{ u.first_name }}">{{ u.last_name }} {{ u.first_name }}</a></td>
+                <td><a href="mailto:{{ u.email }}" title="Envoyer un mail à {{ u.first_name }}">{{ u.email }}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

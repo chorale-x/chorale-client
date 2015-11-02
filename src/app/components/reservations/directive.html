@@ -1,0 +1,13 @@
+{{ resaDir.concert.title }} <em>({{ resaDir.concert.composer_lastname }})</em>
+<a ui-sref="index.concerts.details({id: resaDir.concert.id})" title="Plus d'infos sur ce concert"><small>(plus d'infos)</small></a> • <span class="glyphicon glyphicon-tag"></span> 
+<span ng-if="resaDir.concert.fnac != null">
+    <a href="{{ resaDir.concert.fnac }}" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com</a>
+</span>
+<span ng-if="resaDir.concert.eventbrite != null">
+    <a href="{{ resaDir.concert.eventbrite }}" title="Aller sur le site Eventbrite" target="_blank">Réservations sur Eventbrite</a>
+</span>
+<span ng-if="resaDir.concert.fnac == null && resaDir.next_concert.eventbrite == null">
+    <a ui-sref="index.reservations.make({concert_id: resaDir.next_concert.id})" title="Résever des places pour ce concert">Réserver</a>
+</span>
+<br />
+{{ resaDir.concert.date | date:"EEEE dd MMMM yyyy '&ndash;' HH:mm" }} • {{ resaDir.concert.place }} {{ resaDir.concert.city && '(' + resaDir.concert.city + ')' }}

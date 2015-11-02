@@ -1,0 +1,38 @@
+<a ui-sref="index.concerts.list" title="Agenda">
+    <span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des concerts
+</a><br /><br />
+
+<div ng-if="main.isLoggedIn()" class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Modifications</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <ul>
+                    <li><a ui-sref="index.concerts.edit.general({id: cDetailCtl.concert.id})" title="Changer l'horaire, le lieu, etc.">Modifier les informations générales</a></li>
+                    <li><a ui-sref="index.concerts.edit.pieces({id: cDetailCtl.concert.id})" title="Changer les œuvres">Modifier les œuvres</a></li>
+                    <li><a ui-sref="index.concerts.edit.soloists({id: cDetailCtl.concert.id})" title="Changer les solistes">Modifier les solistes</a></li>
+                    <li><a ui-sref="index.concerts.edit.musicians({id: cDetailCtl.concert.id})" title="Changer les musiciens">Modifier les musiciens</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <ul>
+                    <li>État : (cliquer pour modifier)
+                        <ul>
+                            <li><a href="" ng-click="cDetailCtl.togglePublish(cDetailCtl.concert)"><span class="label" ng-class="cDetailCtl.concert.published && 'label-success' || 'label-danger'">{{ cDetailCtl.concert.published && 'publié' || 'non publié' }}</span></a></li>
+                            <li><a href="" ng-click="cDetailCtl.toggleAnnounce(cDetailCtl.concert)"><span class="label" ng-class="cDetailCtl.concert.announced && 'label-success' || 'label-danger'">{{ cDetailCtl.concert.announced && 'mis en avant' || 'non mis en avant' }}</span></a></li>
+                        </ul>
+                    </li>
+                    <li>Réservations : <a href="" ng-click="cDetailCtl.toggleBooking(cDetailCtl.concert)"><span class="label" ng-class="cDetailCtl.concert.booking && 'label-success' || 'label-danger'">{{ cDetailCtl.concert.booking && 'ouvertes' || 'fermées' }}</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="well center">
+    <chorale:concert:detailed concert="cDetailCtl.concert"></chorale:concert:detailed>
+</div>

@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        {{ commentDir.comment.message }}
+    </div>
+    <div class="panel-footer">
+        <em>{{ commentDir.comment.name && commentDir.comment.name + ' • ' }}{{ commentDir.comment.created | date:'EEE dd MMM yyyy, HH:mm' }} {{ commentDir.comment.deleted && '(supprimé)' || '' }}</em>
+        <div class="small pull-right" ng-if="commentDir.admin">
+            <a class="btn btn-danger btn-xs" ng-click="commentDir.trash(commentDir.comment)" ng-if="!commentDir.comment.deleted">
+                <span class="glyphicon glyphicon-trash"></span> Supprimer
+            </a>
+            <a class="btn btn-warning btn-xs" ng-click="commentDir.untrash(commentDir.comment)" ng-if="commentDir.comment.deleted">
+                <span class="glyphicon glyphicon-refresh"></span> Remettre
+            </a>
+        </div>
+    </div>
+</div>

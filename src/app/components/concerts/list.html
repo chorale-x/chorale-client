@@ -1,0 +1,43 @@
+<div class="center">
+    <h2>Agenda des concerts</h2>
+    <p class="lead">Vous pouvez voir le programme complet du concert en cliquant sur le nom de l'œuvre.</p>
+    <a ng-if="main.isLoggedIn()" class="btn btn-success pull-right" ui-sref="index.concerts.add.general" title="Ajouter un concert">Ajouter un concert dans l'agenda</a>
+</div>
+
+<div class="well text-center" ng-if="cListCtl.theresNext">
+    <h3>{{ cListCtl.next_concert.place }}</h3>
+    <h5>{{ cListCtl.next_concert.city }}</h5>
+    <h3>{{ cListCtl.next_concert.date | date:"EEEE dd MMMM yyyy ' à ' HH:mm" }}</h3>
+    <br />
+
+    <h4 ng-repeat-start="p in cListCtl.next_concert.pieces | orderBy:'rank'" class="small">
+        {{ p.composer_firstname }}  {{ p.composer_lastname }}
+    </h4>
+    <h4 ng-repeat-end>{{ p.title }}</h4>
+
+    <h6 ng-if="cListCtl.next_concert.booking">
+        <span ng-if="cListCtl.next_concert.fnac != null">
+            <a href="{{ cListCtl.next_concert.fnac }}" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com</a>
+        </span>
+        <span ng-if="cListCtl.next_concert.eventbrite != null">
+            <a href="{{ cListCtl.next_concert.eventbrite }}" title="Aller sur le site Eventbrite" target="_blank">Réservations sur Eventbrite</a>
+        </span>
+        <span ng-if="cListCtl.next_concert.fnac == null && cListCtl.next_concert.eventbrite == null">
+            <a ui-sref="index.reservations.make({concert_id: cListCtl.next_concert.id})">Réserver des places</a>
+        </span>
+    </h6>
+</div>
+
+<h3 ng-if="prochain_concerts.length > 0">Concerts à venir</h3>
+<ul class="concerts-list">
+    <li ng-repeat="concert in cListCtl.concerts | filter:cListCtl.afterNow('date') | orderBy:'date' as prochain_concerts" ng-class="!concert.published && 'text-muted small' || ''">
+        <chorale:concert:short concert="concert" admin="main.isLoggedIn()" ng-if="concert.published || (!concert.published && main.isLoggedIn())"></chorale:concert:short>
+    </li>
+</ul>
+
+<h3>Concerts passés</h3>
+<ul class="concerts-list">
+    <li ng-repeat="concert in cListCtl.concerts | filter:cListCtl.beforeNow('date') | orderBy:'date':true" ng-class="!concert.published && 'text-muted small' || ''">
+        <chorale:concert:short concert="concert" admin="main.isLoggedIn()" ng-if="concert.published || (!concert.published && main.isLoggedIn())"></chorale:concert:short>
+    </li>
+</ul>

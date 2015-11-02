@@ -1,0 +1,18 @@
+<div class="center">
+    <h2>Réservations</h2>
+</div>
+
+<div ng-if="resaHomeCtl.bookable_concerts.length > 0">
+    <p class="lead">
+        Vous pouvez réserver des places pour les concerts suivants.
+    </p>
+    
+    <ul>
+        <li ng-repeat="concert in resaHomeCtl.bookable_concerts | orderBy:'date'">
+            <chorale:concert:resa concert="concert"></chorale:concert:resa>
+        </li>
+    </ul>
+</div>
+<div ng-if="resaHomeCtl.bookable_concerts.length == 0">
+    <em>Les réservations ne sont actuellement ouvertes pour aucun concert.</em>
+</div>

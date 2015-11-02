@@ -1,0 +1,7 @@
+<div class="center">
+    <h2>Suppression d'un concert</h2>
+</div>
+<p class="lead">Voulez-vous vraiment supprimer le concert du <strong>{{ cRemoveCtl.concert.date | date:"EEEE dd MMMM yyyy ' à ' HH'h'mm" }}</strong> se tenant à {{ cRemoveCtl.concert.place }} ? Cette opération est irréversible, les informations concernant le concert seront définitivement perdues.</p>
+
+<button class="btn btn-danger" ng-click="cRemoveCtl.trash(cRemoveCtl.concert)">Oui, je suis sûr de vouloir supprimer ce concert</button>
+<a class="btn btn-warning" ui-sref="index.concerts.list">Annuler l'opération et retourner à l'agenda</a>

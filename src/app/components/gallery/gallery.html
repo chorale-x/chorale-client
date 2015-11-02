@@ -1,0 +1,38 @@
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<div class="center">
+    <h2>Galerie photo</h2>
+</div>
+
+<div id="gallery" class="row">
+    <div class="portfolio-items isotope">
+        <div class="portfolio-item apps col-xs-6 col-sm-3 col-md-3 col-lg-2 isotope-item" ng-repeat="img in galleryCtl.images">
+            <div class="recent-work-wrap">
+                <a href="" ng-click="galleryCtl.openGallery($index)" title="Cliquer pour agrandir">
+                    <img ng-src="{{ img.thumbnail }}" class="img-responsive img-square" data-gallery />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="assets/js/blueimp-gallery.min.js"></script>
+<script type="text/javascript">
+    $('#gallery').onclick = function (event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement,
+            link = target.ngSrc ? target.parentNode : target,
+            options = {index: link, event: event},
+            links = this.getElementsByTagName('a');
+        blueimp.Gallery(links, options);
+    };
+</script>

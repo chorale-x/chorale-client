@@ -1,0 +1,86 @@
+<header id="header">
+    <nav class="navbar navbar-inverse" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="index.home"><img src="assets/images/logo-blanc.png" alt="logo" style="max-height: 74px;"></a>
+            </div>
+    
+            <div class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav" ng-if="!main.isLoggedIn()">
+                    <li ui-sref-active="active">
+                        <a ui-sref="index.presentation">Présentation</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="index.concerts">Concerts</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="index.reservations.home">Réservations</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="index.gallery">Galerie</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="index.comments.list">Livre d'or</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="index.subscribers.enrole">Rester informé</a>
+                    </li>
+                    <li>
+                        <a href="mailto:odilon.formery@polytechnique.edu" title="Envoyez-nous un mail">Contact</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav" ng-if="main.isLoggedIn()">
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.me.home">Mon compte</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.users.list">Utilisateurs</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.concerts.list">Concerts</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.reservations.admin">Réservations</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.gallery">Galerie</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.comments.list">Livre d'or</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.subscribers.list">Abonnés</a>
+                        </li>
+                    </ul>
+            </div>
+        </div><!--/.container-->
+    </nav><!--/nav-->
+</header><!--/header-->
+
+<section id="main-content" class="container" ui-view=""></section>
+
+<footer id="footer" class="midnight-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                &copy; 2013-2015 - Design par <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. Tous droits réservés.
+            </div>
+            <div class="col-sm-6">
+                <ul class="pull-right">
+                    <li><a ui-sref="index.home">Accueil</a></li>
+                    <li><a ui-sref="index.presentation">À propos</a></li>
+                    <li><a ui-sref="index.liens">Nos partenaires</a></li>
+                    <li><a href="mailto:odilon.formery@polytechnique.edu" title="Envoyez-nous un mail">Contactez-nous</a></li>
+                    <li ng-if="!main.isLoggedIn()"><a href="" ng-click="main.loginOpen()">Connexion</a></li>
+                    <li ng-if="main.isLoggedIn()"><a href="" ng-click="main.logout()">Déconnexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer><!--/#footer-->
