@@ -6,11 +6,11 @@
         .config(UsersRouter);
 
     /** @ngInject */
-    function UsersRouter($stateProvider) {
+    function UsersRouter($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.when('/users', '/users/');
         $stateProvider
             .state('index.users', {
                 url: "users",
-                // abstract: true,
                 template: "<ui-view />"
             })
                 .state('index.users.list', {
