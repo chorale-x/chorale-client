@@ -18,7 +18,12 @@
                     url: "/",
                     templateUrl: "app/components/concerts/list.html",
                     controller: 'ConcertListController',
-                    controllerAs: 'cListCtl'
+                    controllerAs: 'cListCtl',
+                    resolve: {
+                        concerts: function(Concert, Piece) {
+                            return Concert.findAll();
+                        }
+                    }
                 })
                 .state('index.concerts.add', {
                     url: "/add",

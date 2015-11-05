@@ -8,15 +8,13 @@
         .controller('ConcertRemoveController', ConcertRemoveController);
 
     /** @ngInject */
-    function ConcertListController(Concert, $log) {
+    function ConcertListController(Concert, concerts, $log) {
         var vm = this;
 
-        Concert.findAll().then(function(concerts) {
-            _.forEach(concerts, function(c) {
-                c.pieces = _.sortBy(c.pieces, 'rank');
-            });
-            vm.concerts = concerts;
+        _.forEach(concerts, function(c) {
+            c.pieces = _.sortBy(c.pieces, 'rank');
         });
+        vm.concerts = concerts;
 
         Concert.next().then(function(c) {
             vm.theresNext = c.data.length == 1;
