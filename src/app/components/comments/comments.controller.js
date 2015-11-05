@@ -6,7 +6,7 @@
         .controller('CommentsController', CommentsController);
 
     /** @ngInject */
-    function CommentsController(Comment, $location, $log, AuthService) {
+    function CommentsController(Comment, $scope, $location, $log, AuthService) {
         var vm = this;
 
         Comment.findAll().then(function(c) {
@@ -30,14 +30,12 @@
 
         vm.comment = Comment.createInstance();
         vm.add = function(c) {
-            c.DSCreate({cacheResponse: true}).then(function(cc) {
-                // Comment.findAll({bypassCache: true}).then(function(cc) { 
-                //     vm.comments = cc; 
-                // });
-                vm.comment = Comment.createInstance();
-                Comment.findAll().then(function(nc) {
-                    $log.debug(nc);
+            Comment.create(c).then(function(cc) {
+                Comment.findAll().then(function(coms) {
+                    $log.debug(coms);
+                    vm.comments = coms;
                 });
+                vm.comment = Comment.createInstance();
             }, function(e) {
                 $log.error(e);
             });

@@ -10,15 +10,10 @@
         $stateProvider
             .state('index.comments', {
                 url: 'comments',
-                abstract: true,
-                template: "<ui-view />"
+                templateUrl: "app/components/comments/list.html",
+                controller: 'CommentsController',
+                controllerAs: 'commentCtl'
             })
-                .state('index.comments.list', {
-                    url: "/list",
-                    templateUrl: "app/components/comments/list.html",
-                    controller: 'CommentsController',
-                    controllerAs: 'commentCtl'
-                })
         ;
     }
 })();
