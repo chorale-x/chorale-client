@@ -57,7 +57,12 @@
                     url: "/:id",
                     templateUrl: "app/components/concerts/details.html",
                     controller: 'ConcertDetailController',
-                    controllerAs: 'cDetailCtl'
+                    controllerAs: 'cDetailCtl',
+                    resolve: {
+                        concert: function(Concert, $stateParams) {
+                            return Concert.find($stateParams.id);
+                        }
+                    }
                 })
                 // .state('index.concerts.edit', {
                 //     url: "/edit/:id",
@@ -91,7 +96,12 @@
                     url: "/remove/:id",
                     templateUrl: "app/components/concerts/remove.html",
                     controller: 'ConcertRemoveController',
-                    controllerAs: 'cRemoveCtl'
+                    controllerAs: 'cRemoveCtl',
+                    resolve: {
+                        concert: function(Concert, $stateParams) {
+                            return Concert.find($stateParams.id);
+                        }
+                    }
                 })
         ;
     }

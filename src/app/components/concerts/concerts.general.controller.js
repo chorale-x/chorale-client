@@ -41,13 +41,10 @@
     }
 
     /** @ngInject */
-    function ConcertDetailController(Concert, $stateParams, $log) {
+    function ConcertDetailController(Concert, concert, $log) {
         var vm = this;
 
-        Concert.find($stateParams.id).then(function(c) {
-            vm.concert = c;
-            $log.debug(c);
-        });
+        vm.concert = concert;
 
         vm.togglePublish = function(c) {
             c.published = !c.published;
@@ -64,16 +61,14 @@
     }
 
     /** @ngInject */
-    function ConcertRemoveController(Concert, $stateParams, $state, $log) {
+    function ConcertRemoveController(Concert, concert, $state, $log) {
         var vm = this;
 
-        Concert.find($stateParams.id).then(function(c) {
-            vm.concert = c;
-        });
-        
+        vm.concert = concert;
+
         vm.trash = function(c) {
             c.DSDestroy().then(function() {
-                $state.go('index.concerts.list');
+                $state.go('index.concerts');
             }, function(e) {
                 $log.error(e);
             });
