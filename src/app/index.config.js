@@ -15,8 +15,12 @@
         $httpProvider.interceptors.push('AuthInterceptor');
         // $httpProvider.interceptors.push('HttpRequestInterceptor');
 
-        angular.extend(DSProvider.defaults, {});
+        angular.extend(DSProvider.defaults, {
+            useFilter: true
+        });
         angular.extend(DSHttpAdapterProvider.defaults, {
+            useFilter: true,
+            default: true,
             basePath: 'http://127.0.0.1:8000',
             forceTrailingSlash: true
         });
