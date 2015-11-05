@@ -25,7 +25,6 @@
                                 $localStorage.auth.user = u;
                             });
                         });
-                        $location.path('/');
                     },
                     function(response) {
                         $localStorage.auth.token = null;
