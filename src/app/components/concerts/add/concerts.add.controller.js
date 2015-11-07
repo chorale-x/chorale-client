@@ -7,7 +7,8 @@
         .controller('ConcertAddGeneralController', ConcertAddGeneralController)
         .controller('ConcertAddPiecesController', ConcertAddPiecesController)
         .controller('ConcertAddSoloistsController', ConcertAddSoloistsController)
-        .controller('ConcertAddMusiciansController', ConcertAddMusiciansController);
+        .controller('ConcertAddMusiciansController', ConcertAddMusiciansController)
+        .controller('ConcertAddValidationController', ConcertAddValidationController);
 
     /** @ngInject */
     function ConcertAddController($state) {
@@ -250,5 +251,41 @@
                 });
             });
         };
+    }
+
+    /** @ngInject */
+    function ConcertAddValidationController(Concert, concert, AuthService, API, $state, $stateParams, FileUploader, $log) {
+        var vm = this;
+
+        vm.concert = concert;
+
+        vm.uploadSucces = false;
+        vm.uploader = new FileUploader({
+            url: API.route('concerts/poster/') + $stateParams.id,
+            headers: { 'Authorizaton': 'JWT ' + AuthService.getToken() },
+            queueLimit: 1
+        });
+        vm.uploader.filters.push({
+            name: 'imageFilter',
+            fn: function(item, options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
+        });
+        vm.uploader.onCompleteAll = function() {
+            vm.uploadSuccess = true;
+            vm.uploader.clearQueue();
+        };
+
+        vm.validate = function() {
+            vm.concert.published = !(vm.concert.published == "0");
+            vm.concert.announced = !(vm.concert.announced == "0");
+            vm.concert.booking = !(vm.concert.booking == "0");
+            Concert.update(vm.concert.id, vm.concert).then(function(rc) {
+                $log.debug('Concert correctement enregistré.');
+            }, function(e) {
+                $log.error(e);
+            });
+        }
     }
 })();

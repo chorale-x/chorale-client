@@ -71,11 +71,17 @@
                             }
                         }
                     })
-                //     .state('index.concerts.add.validation', {
-                //         url: "/validation/:id",
-                //         templateUrl: "app/components/concert/add/validation.html",
-                //         controller: 'concerts.ctrl.add.validation'
-                //     })
+                    .state('index.concerts.add.validation', {
+                        url: "/validation/:id",
+                        templateUrl: "app/components/concerts/add/validation.html",
+                        controller: 'ConcertAddValidationController',
+                        controllerAs: 'cAddValCtl',
+                        resolve: {
+                            concert: function(Concert, $stateParams) {
+                                return Concert.find($stateParams.id);
+                            }
+                        }
+                    })
                 .state('index.concerts.details', {
                     url: "/:id",
                     templateUrl: "app/components/concerts/details.html",

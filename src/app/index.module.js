@@ -3,18 +3,19 @@
 
   angular
     .module('chorale', [
-        'ngAnimate', 
-        'ngCookies', 
-        'ngTouch', 
-        'ngSanitize', 
-        'ngMessages', 
-        'ngAria', 
-        'ngResource', 
-        'ui.router', 
+        'ngAnimate',
+        'ngCookies',
+        'ngTouch',
+        'ngSanitize',
+        'ngMessages',
+        'ngAria',
+        'ngResource',
+        'ui.router',
         'ui.bootstrap',
         'angularMoment',
         'bootstrapLightbox',
-        'js-data', 
+        'js-data',
+        'angularFileUpload',
 
         'chorale.auth',
 
