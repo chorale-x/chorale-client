@@ -5,7 +5,8 @@
         .module('chorale.concerts')
         .controller('ConcertAddController', ConcertAddController)
         .controller('ConcertAddGeneralController', ConcertAddGeneralController)
-        .controller('ConcertAddPiecesController', ConcertAddPiecesController);
+        .controller('ConcertAddPiecesController', ConcertAddPiecesController)
+        .controller('ConcertAddSoloistsController', ConcertAddSoloistsController);
 
     /** @ngInject */
     function ConcertAddController($state) {
@@ -117,6 +118,70 @@
                 }, function(e) {
                     $log.error(e);
                     nbP -= 1;
+                });
+            });
+        };
+    }
+
+    /** @ngInject */
+    function ConcertAddSoloistsController(Concert, Soloist, $state, $stateParams, concert, $log) {
+        var vm = this;
+
+        vm.soloists = [Soloist.createInstance()];
+        vm.soloists[0].rank = 1;
+        vm.soloists[0].concert = concert.id;
+
+        vm.addSoloist = function() {
+            var newSoloist = Soloist.createInstance();
+            newSoloist.rank = vm.soloists.length + 1;
+            newSoloist.concert = concert;
+            vm.soloists.push(newSoloist);
+            $log.debug(vm.soloists);
+        };
+
+        vm.removePiece = function(soloist) {
+            var index = vm.soloists.indexOf(soloist);
+            vm.soloists.splice(index, 1);
+            _.forEach(vm.soloists, function(s) {
+                if (s.rank > index)
+                    s.rank -= 1;
+            });
+            $log.debug(vm.soloists);
+        };
+
+        vm.upSoloist = function(soloist) {
+            if (soloist.rank > 1) {
+                _.find(vm.soloists, function(s) {
+                    return s.rank == soloist.rank - 1;
+                }).rank += 1;
+                soloist.rank -= 1;
+            }
+            $log.debug(vm.soloists);
+        };
+
+        vm.downSoloist = function(soloist) {
+            if (soloist.rank < vm.soloists.length) {
+                _.find(vm.soloists, function(s) {
+                    return s.rank == soloist.rank + 1;
+                }).rank -= 1;
+                soloist.rank += 1;
+            }
+            $log.debug(vm.soloists);
+        };
+
+        vm.saveSoloists = function() {
+            var nbS = 0;
+            _.forEach(vm.soloists, function(s) {
+                nbS += 1;
+                $log.debug(s);
+                Soloist.create(s).then(function(ss) {
+                    $log.debug('Le soliste de rang ' + ss.rank + ' a été enregistré.');
+                    if (nbS == vm.soloists.length) {
+                        $state.go('index.concerts.add.musicians', {id: $stateParams.id});
+                    }
+                }, function(e) {
+                    $log.error(e);
+                    nbS -= 1;
                 });
             });
         };

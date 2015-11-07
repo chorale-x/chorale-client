@@ -49,11 +49,17 @@
                             }
                         }
                     })
-                //     .state('index.concerts.add.soloists', {
-                //         url: "/soloists/:id",
-                //         templateUrl: "app/components/concert/add/soloists.html",
-                //         controller: 'concerts.ctrl.add.soloists'
-                //     })
+                    .state('index.concerts.add.soloists', {
+                        url: "/soloists/:id",
+                        templateUrl: "app/components/concerts/add/soloists.html",
+                        controller: 'ConcertAddSoloistsController',
+                        controllerAs: 'cAddSCtl',
+                        resolve: {
+                            concert: function(Concert, $stateParams) {
+                                return Concert.find($stateParams.id);
+                            }
+                        }
+                    })
                 //     .state('index.concerts.add.musicians', {
                 //         url: "/musicians/:id",
                 //         templateUrl: "app/components/concert/add/musicians.html",

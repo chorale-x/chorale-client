@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-2">
+        <p>
+            Pour ajouter un soliste, appuyer sur le bouton idoine.
+            L'ordre des solistes importe (typiquement, soprano, puis alto, puis ténor, puis basse).
+            Pour modifier l'ordre des solistes, utiliser les boutons fléchés.
+            Il est également possible de retirer un soliste de la liste.
+            Une fois les noms et voix des solistes saisis, cliquer sur "Suivant".
+        </p>
+    </div>
+</div>
+
+<div ng-repeat-start="s in cAddSCtl.soloists | orderBy:'rank'" class="row">
+    <div class="col-sm-12 text-center">
+        <h4>
+            Soliste n° {{ $index + 1}}
+            <a ng-click="cAddSCtl.upSoloist(s)" title="Monter le rang de ce soliste">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+            </a>
+            <a ng-click="cAddSCtl.downSoloist(s)" title="Descendre le rang de ce soliste">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+            </a>
+            <a class="text-danger" ng-click="cAddSCtl.removeSoloist(s)" title="Supprimer ce soliste">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </h4>
+    </div>
+</div>
+<div ng-repeat-end class="row">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="s{{$index}}voice">Voix</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="s{{$index}}voice" ng-model="s.voice" placeholder="Soprano" required="required" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="s{{$index}}lastname">Nom et prénom</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="s{{$index}}lastname" ng-model="s.lastname" placeholder="Coquart" required="required" />
+            </div>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="s{{$index}}firstname" ng-model="s.firstname" placeholder="Ève" required="required" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-2">
+        <button ng-click="cAddSCtl.addSoloist()" class="btn btn-success">Ajouter un soliste</button>
+        <button class="btn btn-success pull-right" ng-click="cAddSCtl.saveSoloists()">Valider</button>
+    </div>
+</div>
