@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-2">
+        <p>
+            Pour ajouter une œuvre, appuyer sur le bouton idoine.
+            L'ordre des œuvres importe (la première est l'œuvre principale du concert).
+            Pour modifier l'ordre des pièces, utiliser les boutons fléchés.
+            Il est également possible de supprimer une œuvre du programme.
+            Une fois les titres et compositeurs des pièces saisis, cliquer sur "Suivant".
+        </p>
+    </div>
+</div>
+
+<div ng-repeat-start="p in cAddPCtl.pieces | orderBy:'rank'" class="row">
+    <div class="col-sm-12 text-center">
+        <h4>
+            Pièce n° {{ $index + 1}}
+            <a ng-click="cAddPCtl.upPiece(p)" title="Monter le rang de cette pièce">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+            </a>
+            <a ng-click="cAddPCtl.downPiece(p)" title="Descendre le rang de cette pièce">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+            </a>
+            <a class="text-danger" ng-click="cAddPCtl.removePiece(p)" title="Supprimer cette pièce">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </h4>
+    </div>
+</div>
+<div ng-repeat-end class="row">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="p{{$index}}title">Titre</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="p{{$index}}title" ng-model="p.title" placeholder="Requiem" required="required" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="p{{$index}}composer_lastname">Compositeur</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="p{{$index}}composer_lastname" ng-model="p.composer_lastname" placeholder="Mozart" required="required" />
+            </div>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="p{{$index}}composer_firstname" ng-model="p.composer_firstname" placeholder="Wolfgang Amadeus" required="required" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-2">
+        <button ng-click="cAddPCtl.addPiece()" class="btn btn-success">Ajouter une œuvre</button>
+        <button class="btn btn-success pull-right" ng-click="cAddPCtl.savePieces()">Valider</button>
+    </div>
+</div>

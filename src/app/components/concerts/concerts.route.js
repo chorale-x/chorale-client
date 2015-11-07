@@ -38,11 +38,17 @@
                         controller: 'ConcertAddGeneralController',
                         controllerAs: 'cAddGenCtl'
                     })
-                //     .state('index.concerts.add.pieces', {
-                //         url: "/pieces/:id",
-                //         templateUrl: "app/components/concert/add/pieces.html",
-                //         controller: 'concerts.ctrl.add.pieces'
-                //     })
+                    .state('index.concerts.add.pieces', {
+                        url: "/pieces/:id",
+                        templateUrl: "app/components/concerts/add/pieces.html",
+                        controller: 'ConcertAddPiecesController',
+                        controllerAs: 'cAddPCtl',
+                        resolve: {
+                            concert: function(Concert, $stateParams) {
+                                return Concert.find($stateParams.id);
+                            }
+                        }
+                    })
                 //     .state('index.concerts.add.soloists', {
                 //         url: "/soloists/:id",
                 //         templateUrl: "app/components/concert/add/soloists.html",
