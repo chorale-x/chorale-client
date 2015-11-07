@@ -6,7 +6,8 @@
         .controller('ConcertAddController', ConcertAddController)
         .controller('ConcertAddGeneralController', ConcertAddGeneralController)
         .controller('ConcertAddPiecesController', ConcertAddPiecesController)
-        .controller('ConcertAddSoloistsController', ConcertAddSoloistsController);
+        .controller('ConcertAddSoloistsController', ConcertAddSoloistsController)
+        .controller('ConcertAddMusiciansController', ConcertAddMusiciansController);
 
     /** @ngInject */
     function ConcertAddController($state) {
@@ -139,7 +140,7 @@
             $log.debug(vm.soloists);
         };
 
-        vm.removePiece = function(soloist) {
+        vm.removeSoloist = function(soloist) {
             var index = vm.soloists.indexOf(soloist);
             vm.soloists.splice(index, 1);
             _.forEach(vm.soloists, function(s) {
@@ -182,6 +183,70 @@
                 }, function(e) {
                     $log.error(e);
                     nbS -= 1;
+                });
+            });
+        };
+    }
+
+    /** @ngInject */
+    function ConcertAddMusiciansController(Concert, Musician, $state, $stateParams, concert, $log) {
+        var vm = this;
+
+        vm.musicians = [Musician.createInstance()];
+        vm.musicians[0].rank = 1;
+        vm.musicians[0].concert = concert.id;
+
+        vm.addMusician = function() {
+            var newMusician = Musician.createInstance();
+            newMusician.rank = vm.musicians.length + 1;
+            newMusician.concert = concert;
+            vm.musicians.push(newMusician);
+            $log.debug(vm.musicians);
+        };
+
+        vm.removeMusician = function(musician) {
+            var index = vm.musicians.indexOf(musician);
+            vm.musicians.splice(index, 1);
+            _.forEach(vm.musicians, function(m) {
+                if (m.rank > index)
+                    m.rank -= 1;
+            });
+            $log.debug(vm.musicians);
+        };
+
+        vm.upMusician = function(musician) {
+            if (musician.rank > 1) {
+                _.find(vm.musicians, function(m) {
+                    return m.rank == musician.rank - 1;
+                }).rank += 1;
+                musician.rank -= 1;
+            }
+            $log.debug(vm.musicians);
+        };
+
+        vm.downMusician = function(musician) {
+            if (musician.rank < vm.musicians.length) {
+                _.find(vm.musicians, function(m) {
+                    return m.rank == musician.rank + 1;
+                }).rank -= 1;
+                musician.rank += 1;
+            }
+            $log.debug(vm.musicians);
+        };
+
+        vm.saveMusicians = function() {
+            var nbM = 0;
+            _.forEach(vm.musicians, function(m) {
+                nbM += 1;
+                $log.debug(m);
+                Musician.create(m).then(function(sm) {
+                    $log.debug('Le musicien de rang ' + sm.rank + ' a été enregistré.');
+                    if (nbM == vm.musicians.length) {
+                        $state.go('index.concerts.add.validation', {id: $stateParams.id});
+                    }
+                }, function(e) {
+                    $log.error(e);
+                    nbM -= 1;
                 });
             });
         };

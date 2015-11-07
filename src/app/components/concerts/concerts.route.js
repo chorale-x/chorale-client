@@ -60,11 +60,17 @@
                             }
                         }
                     })
-                //     .state('index.concerts.add.musicians', {
-                //         url: "/musicians/:id",
-                //         templateUrl: "app/components/concert/add/musicians.html",
-                //         controller: 'concerts.ctrl.add.musicians'
-                //     })
+                    .state('index.concerts.add.musicians', {
+                        url: "/musicians/:id",
+                        templateUrl: "app/components/concerts/add/musicians.html",
+                        controller: 'ConcertAddMusiciansController',
+                        controllerAs: 'cAddMCtl',
+                        resolve: {
+                            concert: function(Concert, $stateParams) {
+                                return Concert.find($stateParams.id);
+                            }
+                        }
+                    })
                 //     .state('index.concerts.add.validation', {
                 //         url: "/validation/:id",
                 //         templateUrl: "app/components/concert/add/validation.html",

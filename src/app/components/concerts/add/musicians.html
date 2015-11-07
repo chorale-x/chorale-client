@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-2">
+        <p>
+            Pour ajouter un musicien, appuyer sur le bouton idoine.
+            L'ordre des musiciens importe.
+            Pour modifier l'ordre des musiciens, utiliser les boutons fléchés.
+            Il est également possible de retirer un musicien de la liste.
+            Une fois les noms et instruments des musiciens saisis, cliquer sur "Suivant".
+        </p>
+    </div>
+</div>
+
+<div ng-repeat-start="m in cAddMCtl.musicians | orderBy:'rank'" class="row">
+    <div class="col-sm-12 text-center">
+        <h4>
+            Musicien n° {{ $index + 1}}
+            <a ng-click="cAddMCtl.upMusician(m)" title="Monter le rang de ce musicien">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+            </a>
+            <a ng-click="cAddMCtl.downMusician(m)" title="Descendre le rang de ce musicien">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+            </a>
+            <a class="text-danger" ng-click="cAddMCtl.removeMusician(m)" title="Supprimer ce musicien">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </h4>
+    </div>
+</div>
+<div ng-repeat-end class="row">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="m{{$index}}instrument">Instrument</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="m{{$index}}instrument" ng-model="m.instrument" placeholder="Piano" required="required" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="m{{$index}}lastname">Nom et prénom</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="m{{$index}}lastname" ng-model="m.lastname" placeholder="Chen" required="required" />
+            </div>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="m{{$index}}firstname" ng-model="m.firstname" placeholder="Yuhno" required="required" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-2">
+        <button ng-click="cAddMCtl.addMusician()" class="btn btn-success">Ajouter un musicien</button>
+        <button class="btn btn-success pull-right" ng-click="cAddMCtl.saveMusicians()">Valider</button>
+    </div>
+</div>
+<br /><br />
