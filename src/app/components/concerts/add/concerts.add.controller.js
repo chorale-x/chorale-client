@@ -72,7 +72,7 @@
         vm.addPiece = function() {
             var newPiece = Piece.createInstance();
             newPiece.rank = vm.pieces.length + 1;
-            newPiece.concert = concert;
+            newPiece.concert = concert.id;
             vm.pieces.push(newPiece);
             $log.debug(vm.pieces);
         };
@@ -136,7 +136,7 @@
         vm.addSoloist = function() {
             var newSoloist = Soloist.createInstance();
             newSoloist.rank = vm.soloists.length + 1;
-            newSoloist.concert = concert;
+            newSoloist.concert = concert.id;
             vm.soloists.push(newSoloist);
             $log.debug(vm.soloists);
         };
@@ -200,7 +200,7 @@
         vm.addMusician = function() {
             var newMusician = Musician.createInstance();
             newMusician.rank = vm.musicians.length + 1;
-            newMusician.concert = concert;
+            newMusician.concert = concert.id;
             vm.musicians.push(newMusician);
             $log.debug(vm.musicians);
         };
@@ -237,6 +237,9 @@
 
         vm.saveMusicians = function() {
             var nbM = 0;
+            if (vm.musicians.length == 0) {
+                $state.go('index.concerts.add.validation', {id: $stateParams.id});
+            }
             _.forEach(vm.musicians, function(m) {
                 nbM += 1;
                 $log.debug(m);
