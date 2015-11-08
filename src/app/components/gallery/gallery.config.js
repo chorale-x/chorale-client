@@ -8,4 +8,4 @@
     function galleryConfig(LightboxProvider) {
         LightboxProvider.templateUrl = 'app/components/gallery/lightbox.html';
     }
-})
+})();
