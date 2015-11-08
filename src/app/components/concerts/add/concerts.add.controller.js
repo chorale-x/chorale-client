@@ -173,6 +173,9 @@
 
         vm.saveSoloists = function() {
             var nbS = 0;
+            if (vm.soloists.length == 0) {
+                $state.go('index.concerts.add.musicians', {id: $stateParams.id});
+            }
             _.forEach(vm.soloists, function(s) {
                 nbS += 1;
                 $log.debug(s);
@@ -287,6 +290,7 @@
             vm.concert.booking = !(vm.concert.booking == "0");
             Concert.update(vm.concert.id, vm.concert).then(function(rc) {
                 $log.debug('Concert correctement enregistré.');
+                $state.go('index.concerts');
             }, function(e) {
                 $log.error(e);
             });
