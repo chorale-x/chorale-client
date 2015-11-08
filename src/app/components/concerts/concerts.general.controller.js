@@ -46,15 +46,15 @@
 
         vm.togglePublish = function(c) {
             c.published = !c.published;
-            c.DSSave();
+            Concert.update(c.id, c);
         };
         vm.toggleAnnounce = function(c) {
             c.announced = !c.announced;
-            c.DSSave();
+            Concert.update(c.id, c);
         };
         vm.toggleBooking = function(c) {
             c.booking = !c.booking;
-            c.DSSave();
+            Concert.update(c.id, c);
         };
     }
 
@@ -65,7 +65,7 @@
         vm.concert = concert;
 
         vm.trash = function(c) {
-            c.DSDestroy().then(function() {
+            Concert.destroy(c.id).then(function() {
                 $state.go('index.concerts');
             }, function(e) {
                 $log.error(e);
