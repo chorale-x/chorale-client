@@ -17,16 +17,23 @@
     color: #444444;
 }
 
+body {
+    -webkit-overflow-scrolling: touch;
+}
+
 #big-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    height: 100vh;
 }
 
 #main-content {
-    margin-bottom: 20px;
+    padding-top: 120px;
+    padding-bottom: 100px;
 }
+
+#gallery {
+    margin-bottom: 10px;
+}
+
 
 /* ANIMATIONS ================================================= *
 
