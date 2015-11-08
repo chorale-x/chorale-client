@@ -261,9 +261,10 @@
 
         vm.uploadSucces = false;
         vm.uploader = new FileUploader({
-            url: API.route('concerts/poster/') + $stateParams.id,
-            headers: { 'Authorizaton': 'JWT ' + AuthService.getToken() },
-            queueLimit: 1
+            url: API.route('concert/' + concert.id + '/poster/'),
+            headers: { 'Authorization': 'JWT ' + AuthService.getToken() },
+            queueLimit: 1,
+            alias: 'poster'
         });
         vm.uploader.filters.push({
             name: 'imageFilter',
