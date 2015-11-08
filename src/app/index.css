@@ -13,15 +13,20 @@
     width: 50px;
 }
 
+.dark {
+    color: #444444;
+}
+
+#big-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 #main-content {
     margin-bottom: 20px;
 }
-
-/* *** Sticky footer *** */
-/*#big-container {
-    min-height: 100%;
-}*/
-
 
 /* ANIMATIONS ================================================= *
 

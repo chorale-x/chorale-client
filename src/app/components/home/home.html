@@ -1,3 +1,9 @@
 <div class="col-sm-12">
-Accueil
+    <h1 class="text-center dark">
+        Ensemble vocal de l'École polytechnique
+    </h1>
+    <h2 class="text-center dark">Prochain concert</h2>
+    <div ng-if="home.theresNext" class="well">
+        <chorale:concert:detailed concert="home.next_concert"></chorale:concert:detailed>
+    </div>
 </div>

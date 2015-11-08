@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('chorale.home', []);
+        .module('chorale.home', ['js-data']);
 })();
