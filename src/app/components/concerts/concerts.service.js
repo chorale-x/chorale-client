@@ -43,7 +43,7 @@
             relations: {
                 belongsTo: {
                     concert: {
-                        localField: 'rConcert',
+                        localField: '_concert',
                         localKey: 'concert'
                     }
                 }
@@ -58,7 +58,7 @@
             relations: {
                 belongsTo: {
                     concert: {
-                        localField: 'rConcert',
+                        localField: '_concert',
                         localKey: 'concert'
                     }
                 }
@@ -73,7 +73,7 @@
             relations: {
                 belongsTo: {
                     concert: {
-                        localField: 'rConcert',
+                        localField: '_concert',
                         localKey: 'concert'
                     }
                 }
