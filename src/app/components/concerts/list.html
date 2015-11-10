@@ -16,13 +16,13 @@
     <h4 ng-repeat-end>{{ p.title }}</h4>
 
     <h6 ng-if="cListCtl.next_concert.booking">
-        <span ng-if="cListCtl.next_concert.fnac != null">
+        <span ng-if="cListCtl.next_concert.fnac != ''">
             <a href="{{ cListCtl.next_concert.fnac }}" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com</a>
-        </span>
-        <span ng-if="cListCtl.next_concert.eventbrite != null">
+        </span><br />
+        <span ng-if="cListCtl.next_concert.eventbrite != ''">
             <a href="{{ cListCtl.next_concert.eventbrite }}" title="Aller sur le site Eventbrite" target="_blank">Réservations sur Eventbrite</a>
         </span>
-        <span ng-if="cListCtl.next_concert.fnac == null && cListCtl.next_concert.eventbrite == null">
+        <span ng-if="cListCtl.next_concert.fnac == '' && cListCtl.next_concert.eventbrite == ''">
             <a ui-sref="index.reservations.make({concert_id: cListCtl.next_concert.id})">Réserver des places</a>
         </span>
     </h6>
