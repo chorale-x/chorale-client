@@ -1,0 +1,35 @@
+<div class="col-sm-12">
+    <h2>Liste des abonnés</h2>
+    <ul>
+        <li>La corbeille permet de supprimer un abonné (opération irréversible).</li>
+        <li class="text-danger"><em>Abonné qui s'est désinscrit.</em></li>
+        <li class="text-warning">Abonné qui n'a pas encore confirmé son inscription.</li>
+    </ul>
+
+    <a class="btn btn-success" href="http://mailchimp.com" title="Allez sur le site MailChimp" target="_blank">Envoyer un mail aux abonnés</a>
+    <br /><br />
+
+    <table class="table table-striped" ng-if="subsLCtl.subscribers.length > 0">
+        <thead>
+            <th>Civilité</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Téléphone</th>
+            <th>Email</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="sub in subsLCtl.subscribers | orderBy:['last_name', 'first_name']" ng-class="sub.status == 'unsubscribed' && 'del small text-danger' || (sub.status == 'pending' && 'small text-warning' || '')">
+                <td>{{ sub.civility }}</td>
+                <td>{{ sub.last_name | uppercase }}</td>
+                <td>{{ sub.first_name }}</td>
+                <td>{{ sub.phone }}</td>
+                <td>{{ sub.email_address }}</td>
+                <td><a ng-click="subsLCtl.trash(sub.id)" href="" title="Retirer cet abonné de la liste"><span class="glyphicon glyphicon-trash"></span></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div ng-if="subsLCtl.subscribers.length == 0">
+        <em>Il n'y a actuellement aucun abonné...</em>
+    </div>
+</div>

@@ -26,7 +26,8 @@
         'chorale.concerts',
         'chorale.reservations',
         'chorale.users',
-        'chorale.me'
+        'chorale.me',
+        'chorale.subscribers'
     ]);
 
 })();
