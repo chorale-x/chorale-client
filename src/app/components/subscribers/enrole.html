@@ -7,7 +7,7 @@
         <!--Vous pouvez également "liker" notre page Facebook en bas de cette page.-->
     </p>
 
-    <alert ng-repeat="alert in subsECtl.alerts" type="{{ alert.type }}" close="subsECtlcloseAlert($index)">
+    <alert ng-repeat="alert in subsECtl.alerts" type="{{ alert.type }}" close="subsECtl.closeAlert($index)">
         {{ alert.msg }}
     </alert>
 
