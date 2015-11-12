@@ -44,14 +44,17 @@
     <p ng-bind-html="concert.comment | nl2br"></p>
 
     <h5 ng-if="concert.booking">
+        <span ng-if="concert.phone != ''">
+            Réservations au {{ concert.phone }}
+        </span><br />
         <span ng-if="concert.fnac != ''">
-            <a href="{{ concert.fnac }}" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com</a>
-        </span>
+            <a href="{{ concert.fnac }}" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com (paiement en ligne)</a>
+        </span><br />
         <span ng-if="concert.eventbrite != ''">
-            <a href="{{ concert.eventbrite }}" title="Aller sur le site Eventbrite" target="_blank">Réservations sur Eventbrite</a>
-        </span>
-        <span ng-if="concert.fnac == '' && concert.eventbrite == ''">
-            <a ui-sref="index.reservations.make({concert_id: concert.id})">Réserver des places</a>
+            <a href="{{ concert.eventbrite }}" title="Aller sur le site Eventbrite" target="_blank">Réservations sur Eventbrite (paiement en ligne)</a>
+        </span><br />
+        <span>
+            <a ui-sref="index.reservations.make({concert_id: concert.id})">Réservations sur ce site (paiement sur place, le jour du concert)</a>
         </span>
     </h5>
 
