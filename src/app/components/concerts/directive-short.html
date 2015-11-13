@@ -1,18 +1,18 @@
 <strong>
     <a ui-sref="index.concerts.details({id: concert.id})" title="Plus d'infos sur ce concert">
-        {{ concert.pieces[0].title }} <em>({{ concert.pieces[0].composer_lastname }})</em>
+        <span ng-repeat="p in concert.pieces | orderBy:'rank' | limitTo:1">{{ p.title }} <em>({{ p.composer_lastname }})</em></span>
     </a>
 </strong><br />
 
-{{ concert.date | date:"EEEE dd MMMM yyyy '&ndash;' HH:mm" }} • {{ concert.place }} {{ concert.city && '(' + concert.city + ')' }}<br />
+{{ concert.date | date:"EEEE dd MMMM yyyy '&ndash;' HH'h'mm" }} • {{ concert.place }} {{ concert.city && '(' + concert.city + ')' }}<br />
 
 <span ng-if="admin">
     <a ui-sref="index.reservations.list({concert_id: concert.id})" title="Voir les réservations pour ce concert">
         <span class="glyphicon glyphicon-tag"></span> Réservations
-    </a> • 
+    </a> •
     <a ui-sref="index.concerts.edit.general({id: concert.id})" title="Modifier ce concert">
         <span class="glyphicon glyphicon-edit"></span> Modifier
-    </a> • 
+    </a> •
     <a ui-sref="index.concerts.remove({id: concert.id})" title="Supprimer ce concert">
         <span class="glyphicon glyphicon-trash"></span> Supprimer
     </a>

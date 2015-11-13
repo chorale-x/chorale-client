@@ -7,7 +7,7 @@
 <div class="well text-center" ng-if="cListCtl.theresNext">
     <h3>{{ cListCtl.next_concert.place }}</h3>
     <h5>{{ cListCtl.next_concert.city }}</h5>
-    <h3>{{ cListCtl.next_concert.date | date:"EEEE dd MMMM yyyy ' à ' HH:mm" }}</h3>
+    <h3>{{ cListCtl.next_concert.date | date:"EEEE dd MMMM yyyy ' à ' HH'h'mm" }}</h3>
     <br />
 
     <h4 ng-repeat-start="p in cListCtl.next_concert.pieces | orderBy:'rank'" class="small">
