@@ -1,0 +1,33 @@
+<div class="col-sm-12">
+    <div class="center">
+        <h2>Gestion des réservations</h2>
+    </div>
+
+    <h4>Concerts ouverts à la réservation</h4>
+    <table class="table table-hover">
+        <tr ng-repeat="c in resaAdminCtl.concerts | filter:{'booking': true} | orderBy:'date'">
+            <td>
+                <chorale:concert:short concert="c"></chorale:concert:short>
+            </td>
+            <td>
+                <a class="btn btn-xs btn-info pull-right" ui-sref="index.reservations.list({concert_id: c.id})" tooltip="Voir les réservations pour ce concert">
+                    <span class="glyphicon glyphicon-search"></span> Voir les réservations
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <h4>Concerts fermés à la réservation</h4>
+    <table class="table table-hover">
+        <tr ng-repeat="c in resaAdminCtl.concerts | filter:{'booking': false} | orderBy:'date':true">
+            <td>
+                <chorale:concert:short concert="c"></chorale:concert:short>
+            </td>
+            <td>
+                <a class="btn btn-xs btn-info pull-right" ui-sref="index.reservations.list({concert_id: c.id})" tooltip="Voir les réservations pour ce concert">
+                    <span class="glyphicon glyphicon-search"></span> Voir les réservations
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>

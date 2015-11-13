@@ -16,6 +16,11 @@
                         localKey: 'concert'
                     }
                 }
+            },
+            actions: {
+                empty_concert: {
+                    method: 'DELETE'
+                }
             }
         });
     }

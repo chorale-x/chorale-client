@@ -16,16 +16,14 @@
     }
 
     /** @ngInject */
-    function ReservationsAdminController(Concert, $log) {
+    function ReservationsAdminController(Concert, concerts_list, $log) {
         var vm = this;
 
-        Concert.findAll().then(function(c) {
-            vm.concerts = c;
-        });
+        vm.concerts = concerts_list;
     }
 
     /** @ngInject */
-    function ReservationsListController(Concert, Reservation, reservations_list, the_concert, $log) {
+    function ReservationsListController(Concert, Reservation, reservations_list, the_concert, $state, $log) {
         var vm = this;
 
         vm.reservations_list = reservations_list;
@@ -62,11 +60,15 @@
 
         vm.deleteAllResas = function() {
             if (confirm('Attention ! Cette opération est irréversible !')) {
-                Reservation.empty_concert({concert_id: the_concert.id}).$promise.then(function(res) {
-                    console.log(res);
+                Reservation.empty_concert({suffix: '?concert=' + the_concert.id}).then(function() {
+                    Reservation.ejectAll({
+                        where: {
+                            _concert: the_concert
+                        }
+                    });
                     $state.go('index.reservations.admin');
-                }, function(error) {
-                    console.log(error);
+                }, function(e) {
+                    $log.error(e);
                 });
             }
         };

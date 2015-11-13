@@ -28,7 +28,12 @@
                     url: "/admin",
                     templateUrl: "app/components/reservations/admin.html",
                     controller: 'ReservationsAdminController',
-                    controllerAs: 'resaAdminCtl'
+                    controllerAs: 'resaAdminCtl',
+                    resolve: {
+                        concerts_list: function(Concert) {
+                            return Concert.findAll();
+                        }
+                    }
                 })
                 .state('index.reservations.list', {
                     url: "/concert/:concert_id",

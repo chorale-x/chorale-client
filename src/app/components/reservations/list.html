@@ -1,41 +1,93 @@
-<div class="center">
-    <h2>Livre d'or</h2>
+<div class="col-sm-12">
+    <div class="center">
+        <h2>Liste des réservations</h2>
+    </div>
+
+    <h2>
+        Concert du {{ resaListCtl.the_concert.date | date:"EEEE dd MMMM yyyy" }}<br />
+        <small ng-repeat="p in resaListCtl.the_concert.pieces | orderBy:'rank' | limitTo:1">
+            {{ p.title }} ({{ p.composer_lastname }})
+        </small>
+    </h2>
+
+    <div class="text-right">
+        <a class="btn btn-warning" ng-click="resaListCtl.deleteAllResas()" tooltip="Supprimer toutes les réservations">
+            Vider la liste des réservations
+        </a>
+    </div>
+
+    <div ng-if="resaListCtl.reservations_list.length > 0">
+        <div ng-show="resasToBeChecked.length > 0">
+            <h4>Réservations à valider</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Téléphone</th>
+                        <th>Email</th>
+                        <th>Places numérotées</th>
+                        <th>Places normales</th>
+                        <th>Places étudiantes</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="resa in resaListCtl.reservations_list | filter:{'checked': false} | orderBy:['lastname', 'firstname'] as resasToBeChecked">
+                        <td>{{ resa.civility | civility }} {{ resa.lastname }} {{ resa.firstname }}</td>
+                        <td>{{ resa.phone }}</td>
+                        <td><a href="mailto:{{ resa.email }}" title="Envoyer un email">{{ resa.email }}</a></td>
+                        <td>{{ resa.numbered_seats }}</td>
+                        <td>{{ resa.normal_seats }}</td>
+                        <td>{{ resa.cheap_seats }}</td>
+                        <td>
+                            <a class="btn btn-success btn-xs" ng-click="resaListCtl.checkResa(resa)" title="Valider cette réservation" ng-if="!resa.checked">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </a>
+                            <a class="btn btn-danger btn-xs" ng-click="resaListCtl.deleteResa(resa)" title="Supprimer cette réservation">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div ng-show="resasAlreadyChecked.length > 0">
+            <h4>Réservations validées</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Téléphone</th>
+                        <th>Email</th>
+                        <th>Places numérotées</th>
+                        <th>Places normales</th>
+                        <th>Places étudiantes</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="resa in resaListCtl.reservations_list | filter:{'checked': true} | orderBy:['lastname', 'firstname'] as resasAlreadyChecked">
+                        <td>{{ resa.civility | civility }} {{ resa.lastname }} {{ resa.firstname }}</td>
+                        <td>{{ resa.phone }}</td>
+                        <td><a href="mailto:{{ resa.email }}" title="Envoyer un email">{{ resa.email }}</a></td>
+                        <td>{{ resa.numbered_seats }}</td>
+                        <td>{{ resa.normal_seats }}</td>
+                        <td>{{ resa.cheap_seats }}</td>
+                        <td>
+                            <a class="btn btn-warning btn-xs" ng-click="resaListCtl.uncheckResa(resa)" title="Invalider cette réservation" ng-if="resa.checked">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                            <a class="btn btn-danger btn-xs" ng-click="resaListCtl.deleteResa(resa)" title="Supprimer cette réservation">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-if="resaListCtl.reservations_list.length == 0">
+        <em>Aucune réservation pour ce concert.</em>
+    </div>
 </div>
-
-<div class="text-right">
-    <a class="btn btn-success" ng-click="commentCtl.goToForm()" title="Laissez un message">Laissez un message</a>
-</div>
-
-<h3>Messages des visiteurs</h3>
-<div ng-repeat="comment in commentCtl.comments | filter:commentCtl.filterDeleted() | orderBy:'created':true">
-    <chorale:comment comment="comment" admin="main.isLoggedIn()"></chorale:comment>
-</div>
-
-<br />
-
-<h3 id="formComment">Laisser un message sur notre livre d'or</h3>
-<form class="form-horizontal" ng-submit="commentCtl.add(commentCtl.comment)">
-    <div class="form-group">
-        <label for="cname" class="col-sm-2 control-label">Nom</label>
-        <div class="col-sm-10">
-            <input type="text" id="cname" class="form-control" ng-model="commentCtl.comment.name" required>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="cemail" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-10">
-            <input type="email" id="cemail" class="form-control" ng-model="commentCtl.comment.email" required>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="cmessage" class="col-sm-2 control-label">Message</label>
-        <div class="col-sm-10">
-            <textarea id="cmessage" class="form-control" ng-model="commentCtl.comment.message" required></textarea>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
-            <input type="submit" class="btn btn-success" value="Valider">
-        </div>
-    </div>
-</form>
