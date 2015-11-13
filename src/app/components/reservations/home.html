@@ -4,9 +4,9 @@
 
 <div ng-if="resaHomeCtl.bookable_concerts.length > 0">
     <p class="lead">
-        Vous pouvez réserver des places pour les concerts suivants.
+        Vous pouvez réserver des places pour {{ resaHomeCtl.bookable_concerts.length > 1 && 'les concerts suivants' || 'le concert suivant' }}.
     </p>
-    
+
     <ul>
         <li ng-repeat="concert in resaHomeCtl.bookable_concerts | orderBy:'date'">
             <chorale:concert:resa concert="concert"></chorale:concert:resa>

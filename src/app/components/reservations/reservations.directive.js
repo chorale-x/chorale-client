@@ -12,8 +12,6 @@
                 concert: '=concert'
             },
             templateUrl: 'app/components/reservations/directive.html',
-            controllerAs: 'resaDir',
-            bindToController: true
         };
     }
 })();

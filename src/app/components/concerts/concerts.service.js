@@ -25,6 +25,10 @@
                     musician: {
                         localField: 'musicians',
                         foreignKey: 'concert_id'
+                    },
+                    reservation: {
+                        localField: 'reservations',
+                        foreignKey: 'concert_id'
                     }
                 }
             },

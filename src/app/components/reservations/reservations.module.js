@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('chorale.reservations', ['ngResource']);
+        .module('chorale.reservations', ['js-data']);
 })();
