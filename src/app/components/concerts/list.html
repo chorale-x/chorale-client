@@ -15,19 +15,19 @@
     </h4>
     <h4 ng-repeat-end>{{ p.title }}</h4>
 
-    <h6 ng-if="cListCtl.next_concert.booking">
-        <span ng-if="cListCtl.next_concert.phone != ''">
+    <h6 class="reservations-block" ng-if="cListCtl.next_concert.booking">
+        <div ng-if="cListCtl.next_concert.phone != ''">
             Réservations au {{ cListCtl.next_concert.phone }}
-        </span><br />
-        <span ng-if="cListCtl.next_concert.fnac != ''">
+        </div>
+        <div ng-if="cListCtl.next_concert.fnac != ''">
             <a href="{{ cListCtl.next_concert.fnac }}" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com (paiement en ligne)</a>
-        </span><br />
-        <span ng-if="cListCtl.next_concert.eventbrite != ''">
+        </div>
+        <div ng-if="cListCtl.next_concert.eventbrite != ''">
             <a href="{{ cListCtl.next_concert.eventbrite }}" title="Aller sur le site Eventbrite" target="_blank">Réservations sur Eventbrite (paiement en ligne)</a>
-        </span><br />
-        <span>
+        </div>
+        <div>
             <a ui-sref="index.reservations.make({concert_id: cListCtl.next_concert.id})">Réservations sur ce site (paiement sur place, le jour du concert)</a>
-        </span>
+        </div>
     </h6>
 </div>
 
