@@ -7,6 +7,7 @@
 
     /** @ngInject */
     function routerConfig($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/home');
         $stateProvider
             .state('index', {
                 url: "/",
@@ -23,8 +24,6 @@
                     url: "/404",
                     templateUrl: "app/main/404.html"
                 });
-
-        $urlRouterProvider.otherwise('/home');
     }
 
 })();

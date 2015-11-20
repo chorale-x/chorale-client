@@ -104,10 +104,10 @@
                     'last_name': vm.resa.lastname,
                     'first_name': vm.resa.firstname,
                     'email_address': vm.resa.email,
-                    'phone': vm.resa.phone,
+                    'phone': vm.resa.phone
                 }).then(function(es) {
                     vm.alerts.push({type: 'success', msg: "Votre inscription a été prise en compte. Vous allez recevoir un mail de confirmation, merci de cliquer sur le lien qu'il contient afin de valider votre inscription."});
-                    $imeout(function () {
+                    $timeout(function () {
                         $state.go('index.concerts.list');
                     }, 2000);
                 }, function(e) {

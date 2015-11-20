@@ -12,7 +12,7 @@
             .state('index.me', {
                 url: "me",
                 // abstract: true,
-                template: "<ui-view />",
+                template: "<ui-view />"
             })
                 .state('index.me.home', {
                     url: "/",
