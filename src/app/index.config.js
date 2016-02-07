@@ -21,7 +21,7 @@
         angular.extend(DSHttpAdapterProvider.defaults, {
             useFilter: true,
             default: true,
-            basePath: 'http://127.0.0.1:8000',
+            basePath: 'http://api.chorale.binets.fr',
             forceTrailingSlash: true
         });
     }
