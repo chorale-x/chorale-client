@@ -21,7 +21,7 @@
 
 
     <h2 ng-repeat="p in concert.pieces | orderBy:'rank'">
-        <small>{{ p.composer_firstname }} {{ p.composer_lastname }}</small><br />
+        <small>{{ p.composer_firstname }} {{ p.composer_lastname|uppercase }}</small><br />
         <span ng-show="$index==0"><strong>{{ p.title }}</strong></span>
         <small ng-show="$index>0"><strong>{{ p.title }}</strong></small>
     </h2>
@@ -40,7 +40,7 @@
         </p>
         <p>
             <span ng-repeat="s in concert.soloists | orderBy:'rank'">
-                <strong>{{ s.voice }}</strong> &ndash; {{ s.firstname }} {{ s.lastname }}<br />
+                <strong>{{ s.voice }}</strong> &ndash; {{ s.firstname }} {{ s.lastname |uppercase }}<br />
             </span>
         </p>
         <p ng-if="concert.musicians.length > 0">
@@ -48,7 +48,7 @@
         </p>
         <p>
             <span ng-repeat="m in concert.musicians | orderBy:'rank'">
-                <strong>{{ m.instrument }}</strong> &ndash; {{ m.firstname }} {{ m.lastname }}<br />
+                <strong>{{ m.instrument }}</strong> &ndash; {{ m.firstname }} {{ m.lastname |uppercase}}<br />
             </span>
         </p>
         <p>
@@ -61,7 +61,7 @@
     </p>
 
     <p ng-if="concert.director_lastname != '' || concert.director_firstname != ''">
-        <strong>Direction</strong> &ndash; {{ concert.director_firstname }} {{ concert.director_lastname}}
+        <strong>Direction</strong> &ndash; {{ concert.director_firstname }} {{ concert.director_lastname | uppercase}}
     </p>
 
     <p ng-bind-html="concert.comment | nl2br"></p>
