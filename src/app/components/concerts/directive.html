@@ -1,16 +1,42 @@
 <div class="center">
-    <h3>{{ concert.date | date:'EEEE dd MMMM yyyy à HH\'h\'mm' }}</h3>
+    <div ng-if="concert.poster != null">
+        <img ng-src="{{ concert.poster }}" class="img-responsive" alt="" style="max-width: 50%; margin: auto;" />
+    </div>
+
+    <h5 class="reservations-block" ng-if="concert.booking">
+        <div ng-if="concert.phone != ''">
+            Réservations au {{ concert.phone }}
+        </div>
+        <div ng-if="concert.fnac != ''">
+            <a href="{{ concert.fnac }}" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com (paiement en ligne)</a>
+        </div>
+        <div ng-if="concert.eventbrite != ''">
+            <a href="{{ concert.eventbrite }}" title="Aller sur le site Eventbrite" target="_blank">Réservations sur Eventbrite (paiement en ligne)</a>
+        </div>
+        <div>
+            <a ui-sref="index.reservations.make({concert_id: concert.id})">Réservations sur ce site (paiement sur place, le jour du concert)</a>
+        </div>
+    </h5>
+
+
 
     <h2 ng-repeat="p in concert.pieces | orderBy:'rank'">
         <small>{{ p.composer_firstname }} {{ p.composer_lastname }}</small><br />
-        {{ p.title }}
+        <span ng-show="$index==0"><strong>{{ p.title }}</strong></span>
+        <small ng-show="$index>0"><strong>{{ p.title }}</strong></small>
     </h2>
 
-    <br />
+<p>***</p>
+
+        <h3>{{ concert.date | date:'EEEE dd MMMM yyyy à HH\'h\'mm' }}</h3>
+
+        <h3>{{ concert.place }}</h3>
+        <h5 ng-bind-html="concert.address | nl2br"></h5>
+
 
     <div class="row">
         <p ng-if="concert.soloists.length > 0">
-            ***
+
         </p>
         <p>
             <span ng-repeat="s in concert.soloists | orderBy:'rank'">
@@ -38,9 +64,6 @@
         <strong>Direction</strong> &ndash; {{ concert.director_firstname }} {{ concert.director_lastname}}
     </p>
 
-    <h3>{{ concert.place }}</h3>
-    <h5 ng-bind-html="concert.address | nl2br"></h5>
-
     <p ng-bind-html="concert.comment | nl2br"></p>
 
     <h5 class="reservations-block" ng-if="concert.booking">
@@ -58,7 +81,5 @@
         </div>
     </h5>
 
-    <div ng-if="concert.poster != null">
-        <img ng-src="{{ concert.poster }}" class="img-responsive" alt="" style="max-width: 50%; margin: auto;" />
-    </div>
+
 </div>
