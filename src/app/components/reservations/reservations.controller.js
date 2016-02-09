@@ -92,29 +92,33 @@
         vm.saveResa = function(resa) {
             Reservation.create(resa).then(function() {
                 $log.debug('Réservation effectuée avec succès.');
-                if (!vm.resa.subscriber) {
+                vm.alerts.push({type: 'success', msg: "Votre réservation a été prise en compte. Nous allons vous contacter prochainement pour la valider."});
+                // if (!vm.resa.subscriber) {
+                //     $state.go('index.concerts.list');
+                // }
+                $timeout(function () {
                     $state.go('index.concerts.list');
-                }
+                }, 5000);
             }, function(e) {
                 $log.error(e);
             });
-            if (vm.resa.subscriber) {
-                Subscriber.create({
-                    'civility': vm.resa.civility,
-                    'last_name': vm.resa.lastname,
-                    'first_name': vm.resa.firstname,
-                    'email_address': vm.resa.email,
-                    'phone': vm.resa.phone
-                }).then(function(es) {
-                    vm.alerts.push({type: 'success', msg: "Votre inscription a été prise en compte. Vous allez recevoir un mail de confirmation, merci de cliquer sur le lien qu'il contient afin de valider votre inscription."});
-                    $timeout(function () {
-                        $state.go('index.concerts.list');
-                    }, 2000);
-                }, function(e) {
-                    vm.alerts.push({type: 'danger', msg: "Un problème est survenu. Veuillez vérifier vos informations et recommencer."});
-                    $log.error(e);
-                });
-            }
+            // if (vm.resa.subscriber) {
+            //     Subscriber.create({
+            //         'civility': vm.resa.civility,
+            //         'last_name': vm.resa.lastname,
+            //         'first_name': vm.resa.firstname,
+            //         'email_address': vm.resa.email,
+            //         'phone': vm.resa.phone
+            //     }).then(function(es) {
+            //         vm.alerts.push({type: 'success', msg: "Votre inscription a été prise en compte. Vous allez recevoir un mail de confirmation, merci de cliquer sur le lien qu'il contient afin de valider votre inscription."});
+            //         $timeout(function () {
+            //             $state.go('index.concerts.list');
+            //         }, 2000);
+            //     }, function(e) {
+            //         vm.alerts.push({type: 'danger', msg: "Un problème est survenu. Veuillez vérifier vos informations et recommencer."});
+            //         $log.error(e);
+            //     });
+            // }
         };
     }
 })();
