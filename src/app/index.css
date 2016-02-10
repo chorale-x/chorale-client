@@ -9,6 +9,10 @@
     height: 200px;
 }
 
+.apps {
+    padding:10px;
+}
+
 .thumbnail img.pull-right {
     width: 50px;
 }
