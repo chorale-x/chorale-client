@@ -22,6 +22,8 @@
             useFilter: true,
             default: true,
             basePath: 'http://api.chorale.binets.fr',
+            // basePath: 'http://127.0.0.1:8000',
+
             forceTrailingSlash: true
         });
     }

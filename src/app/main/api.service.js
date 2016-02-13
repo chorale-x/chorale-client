@@ -18,7 +18,7 @@
                 if (/localhost/.test($location.absUrl())) {
                     return 'http://127.0.0.1:8000' + path;
                 } else {
-                    return '/api' + path;
+                    return 'http://api.chorale.binets.fr' + path;
                 }
             }
         };
