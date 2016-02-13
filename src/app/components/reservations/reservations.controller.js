@@ -93,6 +93,7 @@
             Reservation.create(resa).then(function() {
                 $log.debug('Réservation effectuée avec succès.');
                 vm.alerts.push({type: 'success', msg: "Votre réservation a été prise en compte. Nous allons vous contacter prochainement pour la valider."});
+                window.scrollTo(0, 0);
                 // if (!vm.resa.subscriber) {
                 //     $state.go('index.concerts.list');
                 // }
