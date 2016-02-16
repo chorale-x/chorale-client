@@ -71,6 +71,9 @@
                     AuthService.logout();
                     $injector.get('$state').go('index.login');
                 }
+                if (response.status === -1) {
+                    $injector.get('$state').go('index.error');
+                }
                 return $q.reject(response);
             }
         };
