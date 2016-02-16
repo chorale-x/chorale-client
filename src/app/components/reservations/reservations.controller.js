@@ -31,7 +31,8 @@
 
         vm.checkResa = function(resa) {
             resa.checked = true;
-            Reservation.update(resa, resa.id).then(function() {
+            resa.concert = the_concert.id
+            Reservation.update(resa.id, resa).then(function() {
                 $log.debug('Réservation modifiée.');
             }, function(e) {
                 $log.error(e);
@@ -40,7 +41,8 @@
 
         vm.uncheckResa = function(resa) {
             resa.checked = false;
-            Reservation.update(resa, resa.id).then(function() {
+            resa.concert = the_concert.id;
+            Reservation.update(resa.id, resa).then(function() {
                 $log.debug('Réservation modifiée.');
             }, function(e) {
                 $log.error(e);
