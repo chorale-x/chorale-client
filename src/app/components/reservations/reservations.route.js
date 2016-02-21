@@ -20,7 +20,7 @@
                     controllerAs: 'resaHomeCtl',
                     resolve: {
                         bookable_concerts: function(Concert) {
-                            return Concert.filter({
+                            return Concert.findAll({
                                 where: {
                                     'booking': true
                                   }
