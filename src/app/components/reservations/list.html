@@ -28,6 +28,7 @@
                         <th>Places numérotées</th>
                         <th>Places normales</th>
                         <th>Places étudiantes</th>
+                        <th>Commentaire</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -39,6 +40,7 @@
                         <td>{{ resa.numbered_seats }}</td>
                         <td>{{ resa.normal_seats }}</td>
                         <td>{{ resa.cheap_seats }}</td>
+                        <td>{{ resa.message }}</td>
                         <td>
                             <a class="btn btn-success btn-xs" ng-click="resaListCtl.checkResa(resa)" title="Valider cette réservation" ng-if="!resa.checked">
                                 <span class="glyphicon glyphicon-ok"></span>
@@ -63,6 +65,7 @@
                         <th>Places numérotées</th>
                         <th>Places normales</th>
                         <th>Places étudiantes</th>
+                        <th>Commentaire</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -74,6 +77,7 @@
                         <td>{{ resa.numbered_seats }}</td>
                         <td>{{ resa.normal_seats }}</td>
                         <td>{{ resa.cheap_seats }}</td>
+                        <td>{{ resa.message }}</td>
                         <td>
                             <a class="btn btn-warning btn-xs" ng-click="resaListCtl.uncheckResa(resa)" title="Invalider cette réservation" ng-if="resa.checked">
                                 <span class="glyphicon glyphicon-remove"></span>
