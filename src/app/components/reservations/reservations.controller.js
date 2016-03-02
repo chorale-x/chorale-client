@@ -103,6 +103,8 @@
                     $state.go('index.concerts.list');
                 }, 5000);
             }, function(e) {
+                vm.alerts.push({type: 'danger', msg: "Un problème est survenu. Veuillez réessayer ultérieurement."});
+                window.scrollTo(0, 0);
                 $log.error(e);
             });
             // if (vm.resa.subscriber) {
