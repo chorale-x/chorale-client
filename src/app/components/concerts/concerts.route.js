@@ -93,34 +93,65 @@
                         }
                     }
                 })
-                // .state('index.concerts.edit', {
-                //     url: "/edit/:id",
-                //     abstract: true,
-                //     templateUrl: "app/components/concerts/edit/layout.html",
-                //     controller: ['$stateParams', '$scope', function($stateParams, $scope) {
-                //         $scope.concert_id = $stateParams.id;
-                //     }]
-                // })
-                //     .state('index.concerts.edit.general', {
-                //         url: "/",
-                //         templateUrl: "app/components/concerts/edit/general.html",
-                //         controller: 'concerts.ctrl.edit.general'
-                //     })
-                //     .state('index.concerts.edit.pieces', {
-                //         url: "/pieces/",
-                //         templateUrl: "app/components/concerts/add/pieces.html",
-                //         controller: 'concerts.ctrl.edit.pieces'
-                //     })
-                //     .state('index.concerts.edit.soloists', {
-                //         url: "/soloists/",
-                //         templateUrl: "app/components/concerts/add/soloists.html",
-                //         controller: 'concerts.ctrl.edit.soloists'
-                //     })
-                //     .state('index.concerts.edit.musicians', {
-                //         url: "/musicians/",
-                //         templateUrl: "app/components/concerts/add/musicians.html",
-                //         controller: 'concerts.ctrl.edit.musicians'
-                //     })
+      //            .state('index.concerts.edit', {
+      //                url: "/edit/:id",
+      //                abstract: true,
+      //                templateUrl: "app/components/concerts/edit/layout.html",
+      //                controller: 'ConcertEditController'//['$stateParams', '$scope', function($stateParams, $scope) {
+      //                    //$scope.concert_id = $stateParams.id;
+      //               // }],
+		  //    controllerAs: 'cEditCtl',
+		  //    resolve: {
+      //                   concert: function(Concert, $stateParams) {
+      //                       return Concert.find($stateParams.id);
+      //                   }
+      //               }
+      //            })
+      //                .state('index.concerts.edit.general', {
+      //                    url: "/",
+      //                    templateUrl: "app/components/concerts/edit/general.html",
+      //                    controller: 'ConcertEditGeneralController',//'concerts.ctrl.edit.general',
+			//  controllerAs: 'cEditGenCtl',
+			//  resolve: {
+      //                       concert: function(Concert, $stateParams) {
+      //                      	 return Concert.find($stateParams.id);
+      //                  	    }
+      //                    }
+      //                })
+      //                .state('index.concerts.edit.pieces', {
+      //                    url: "/pieces/",
+      //                    templateUrl: "app/components/concerts/edit/pieces.html",
+      //                    controller: 'ConcertEditPiecesController',//'concerts.ctrl.edit.pieces',
+			//  controllerAs: 'cEditPCtl',
+			//  resolve: {
+      //                        concert: function(Concert, $stateParams) {
+      //                            return Concert.find($stateParams.id);
+      //                        }
+      //                    }
+      //                })
+      //                .state('index.concerts.edit.soloists', {
+      //                    url: "/soloists/",
+      //                    templateUrl: "app/components/concerts/edit/soloists.html",
+      //                    controller: 'ConcertEditSoloistsController',//'concerts.ctrl.edit.soloists',
+			//  controllerAs: 'cEditSCtl',
+			//  resolve: {
+      //                       concert: function(Concert, $stateParams) {
+      //                          return Concert.find($stateParams.id);
+      //                       }
+      //                    }
+      //                })
+      //                .state('index.concerts.edit.musicians', {
+      //                    url: "/musicians/",
+      //                    templateUrl: "app/components/concerts/edit/musicians.html",
+      //                    controller: 'ConcertEditMusiciansController',//'concerts.ctrl.edit.musicians',
+			//  controllerAs: 'cEditMCtl',
+			//  resolve: {
+      //                        concert: function(Concert, $stateParams) {
+      //                           return Concert.find($stateParams.id);
+      //                        }
+      //                    }
+      //                })
+
                 .state('index.concerts.remove', {
                     url: "/remove/:id",
                     templateUrl: "app/components/concerts/remove.html",

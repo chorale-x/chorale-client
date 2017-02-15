@@ -7,15 +7,29 @@
         <div ng-if="concert.phone != ''">
             Réservations au {{ concert.phone }}
         </div>
-        <div ng-if="concert.fnac != ''">
+        </h5><h3 class="reservations-block" ng-if="concert.booking">
+        <!--<div ng-if="concert.eventbrite != ''">
+            <a href="{{ concert.eventbrite }}" title="Aller sur la billetterie en ligne" target="_blank">Réservations sur la billetterie en ligne (paiement en ligne)</a>
+        </div>-->
+	<div>
+	    <a href="https://lydia-app.com/collect/verdi-binet-chorale-polytechnique" title="Aller sur la billetterie en ligne" target="_blank">Réservations sur la billetterie en ligne (paiement en ligne)</a>
+	</div>
+	</h3><h5 class="reservations-block" ng-if="concert.booking">
+        <div ng-if="concert.date.substring(8,10) == '07'">
+            <a ui-sref="index.reservations.make({concert_id: concert.id})">Concert du mardi 07 mars : Réservations sur ce site (paiement sur place, le jour du concert)</a>
+	    <br /><a ui-sref="index.reservations.make({concert_id: concert.id+1})">Concert du mercredi 08 mars : Réservations sur ce site (paiement sur place, le jour du concert)</a>
+        </div>
+        <div ng-if="concert.date.substring(8,10) == '08'">
+            <a ui-sref="index.reservations.make({concert_id: concert.id-1})">Concert du mardi 07 mars : Réservations sur ce site (paiement sur place, le jour du concert)</a>
+	    <br /><a ui-sref="index.reservations.make({concert_id: concert.id})">Concert du mercredi 08 mars : Réservations sur ce site (paiement sur place, le jour du concert)</a>
+        </div>
+
+	<!--<div ng-if="concert.fnac != ''">
             <a href="{{ concert.fnac }}" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com (paiement en ligne)</a>
-        </div>
-        <div ng-if="concert.eventbrite != ''">
-            <a href="{{ concert.eventbrite }}" title="Aller sur le site Eventbrite" target="_blank">Réservations sur Eventbrite (paiement en ligne)</a>
-        </div>
-        <div>
-            <a ui-sref="index.reservations.make({concert_id: concert.id})">Réservations sur ce site (paiement sur place, le jour du concert)</a>
-        </div>
+        </div>-->
+	<div>
+	    <a href="http://www.fnacspectacles.com/place-spectacle/manifestation/Musique-classique-VERDI-REQUIEM-VERBI.htm" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com (paiement en ligne)</a>
+	</div>
     </h5>
 
 
@@ -28,7 +42,7 @@
 
 <p>***</p>
 
-        <h3>{{ concert.date | date:'EEEE dd MMMM yyyy à HH\'h\'mm' }}</h3>
+        <h3> <!--{{ concert.date | date:'EEEE dd MMMM yyyy à HH\'h\'mm' }}--> mardi 07 mars 2017<br />mercredi 08 mars 2017 à 20h30</h3>
 
         <h3>{{ concert.place }}</h3>
         <h5 ng-bind-html="concert.address | nl2br"></h5>
@@ -57,7 +71,8 @@
     </div>
 
     <p ng-if="concert.orchestra">
-        <strong>Orchestre</strong> &ndash; {{ concert.orchestra }}
+        <!--<strong>Orchestre</strong> &ndash; {{ concert.orchestra }}-->
+	Orchestre - Atelier {{ concert.orchestra }}
     </p>
 
     <p ng-if="concert.director_lastname != '' || concert.director_firstname != ''">
@@ -70,15 +85,28 @@
         <div ng-if="concert.phone != ''">
             Réservations au {{ concert.phone }}
         </div>
-        <div ng-if="concert.fnac != ''">
+        </h5><h3 class="reservations-block" ng-if="concert.booking">
+        <!--<div ng-if="concert.eventbrite != ''">
+            <a href="{{ concert.eventbrite }}" title="Aller sur la billetterie en ligne" target="_blank">Réservations sur la billetterie en ligne (paiement en ligne)</a>
+        </div>--> 
+	<div>
+	    <a href="https://lydia-app.com/collect/verdi-binet-chorale-polytechnique" title="Aller sur la billetterie en ligne" target="_blank">Réservations sur la billetterie en ligne (paiement en ligne)</a>
+	</div></h3><h5 class="reservations-block" ng-if="concert.booking">
+	<div ng-if="concert.date.substring(8,10) == '07'">
+            <a ui-sref="index.reservations.make({concert_id: concert.id})">Concert du mardi 07 mars : Réservations sur ce site (paiement sur place, le jour du concert)</a>
+	    <br /><a ui-sref="index.reservations.make({concert_id: concert.id+1})">Concert du mercredi 08 mars : Réservations sur ce site (paiement sur place, le jour du concert)</a>
+        </div>
+        <div ng-if="concert.date.substring(8,10) == '08'">
+            <a ui-sref="index.reservations.make({concert_id: concert.id-1})">Concert du mardi 07 mars : Réservations sur ce site (paiement sur place, le jour du concert)</a>
+	    <br /><a ui-sref="index.reservations.make({concert_id: concert.id})">Concert du mercredi 08 mars : Réservations sur ce site (paiement sur place, le jour du concert)</a>
+        </div>
+	
+	<!--<div ng-if="concert.fnac != ''">
             <a href="{{ concert.fnac }}" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com (paiement en ligne)</a>
-        </div>
-        <div ng-if="concert.eventbrite != ''">
-            <a href="{{ concert.eventbrite }}" title="Aller sur le site Eventbrite" target="_blank">Réservations sur Eventbrite (paiement en ligne)</a>
-        </div>
-        <div>
-            <a ui-sref="index.reservations.make({concert_id: concert.id})">Réservations sur ce site (paiement sur place, le jour du concert)</a>
-        </div>
+        </div>-->
+	<div>
+	    <a href="http://www.fnacspectacles.com/place-spectacle/manifestation/Musique-classique-VERDI-REQUIEM-VERBI.htm" title="Aller sur le site de la FNAC" target="_blank">Réservations sur fnacspectacles.com (paiement en ligne)</a>
+	</div>
     </h5>
 
 
